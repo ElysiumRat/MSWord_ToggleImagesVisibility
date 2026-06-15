@@ -1,4 +1,26 @@
 # MSWord_ToggleImagesVisibility
-A VBA macro for Word that toggles image visibility. Created to deal with the fact that Microsoft removed Show Image Placeholders from recent versions of Word. This was to fill a need to quickly and easily toggle images in a non-destructive manner, and in a way that works natively in Word. After some research, the methods found were that inline images could be hidden with a setting in Fonts, `ActiveDocument.InlineShapes(i).Range.Font.Hidden`, and floating images could be hidden with a setting in Shapes, `ActiveDocument.Shapes(i).Visible`.
+A VBA macro for Microsoft Word that toggles the visibility of all images in a document. This was created as a workaround after Microsoft removed the Show Image Placeholders option from recent versions of Word. The goal was to provide a fast, non‑destructive way to hide or reveal images—especially useful when working with sensitive or graphic content.
 
-So, in brief, the macro functions by looping through every iteration of inline and floating images, and switches its visibility state to the inverse of whatever it is at present. As such, assuming all images are visible (conversely, hidden), the macro will render them hidden (conversely, visible). This does mean that, as it stands, the macro will confuse matters if some images are already hidden in the same manner, but assuming that all images are in an identical state, this will work as intended. Furthermore, this does not account for images in headers or footers, as this seemed like unnecessary functionality, given that this macro was designed specifically to be able to hide images from the user---the use case this was created for was to hide graphic medical photos from view when editing an article on such subject matter.
+## Functionality
+
+The macro toggles visibility for two types of images:
+
+ - Inline images: stored in `ActiveDocument.InlineShapes`, controlled by `Range.Font.Hidden`
+ - Floating images: stored in `ActiveDocument.Shapes`, controlled by `Shape.Visible`
+
+It loops through each image in the document and flips its visibility state. If all images are visible, running the macro hides them; if all are hidden, running it reveals them. Because these two types behave differently, the macro handles each separately:
+
+ - Inline images are "hidden" by toggling the `Hidden` font property on their range.
+ - Floating images are hidden by toggling the `Visible` property of the shape object.
+
+This approach is fully reversible and does not modify or delete the images themselves.
+
+
+## Limitations
+
+ - The macro assumes that all images start in the same visibility state. If some are already hidden manually, the toggle may produce mixed results.
+ - It does not process images in headers or footers. This was intentional, as the macro was designed for scenarios where the user needs to hide images in the main editing area—for example, when working with graphic medical content.
+
+## Why This Exists
+
+This macro fills a gap left by the removal of Word’s built‑in "Show Image Placeholders" feature. It provides a native, script‑based way to hide images quickly without altering the document’s structure or content.
