@@ -1,5 +1,5 @@
 # MSWord_ToggleImagesVisibility
-A VBA macro for Microsoft Word that toggles the visibility of all images in a document. This was created as a workaround after Microsoft removed the Show Image Placeholders option from recent versions of Word. The goal was to provide a fast, non‑destructive way to hide or reveal images—especially useful when working with sensitive or graphic content.
+A VBA macro for Microsoft Word that toggles the visibility of all images in a document. This was created as a workaround after Microsoft removed the `Show Image Placeholders` option from recent versions of Word. The goal was to provide a fast, non‑destructive way to hide or reveal images—especially useful when working with sensitive or graphic content.
 
 ## Functionality
 
